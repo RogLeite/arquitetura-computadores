@@ -39,18 +39,18 @@ entity ALU is
 end ALU;
 
 architecture Behavioral of ALU is
-type operations is (nada, soma, sub, e, ou, xou, na, ne, dec, inc);
+type operations is (nada, soma, sub, e, ou, xou, na, ne);
 signal op : operations := nada;
 signal result_r : STD_LOGIC_VECTOR (4 downto 0) := (others =>'0');
 
 -- OpCode:
--- 0001 : A+B
--- 0010 : A-B
--- 0011 : A e B
--- 0100 : A ou B
--- 0101 : A xou B
--- 0110 : A ne B
--- 0111 : not A
+-- 001 : A+B
+-- 010 : A-B
+-- 011 : A e B
+-- 100 : A ou B
+-- 101 : A xou B
+-- 110 : A ne B
+-- 111 : not A
 
 begin
 
