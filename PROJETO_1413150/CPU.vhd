@@ -45,7 +45,7 @@ end CPU;
 architecture Behavioral of CPU is
 
 --estados da CPU
-type cycles is (idle, fetch_1, fetch_2, decode_1, decode_2, fetch_again_1, fetch_again_2, execute_1);-- talvez tenha fetchagain
+type cycles is (idle, fetch_1, fetch_2, decode_1, decode_2, fetch_again_1, fetch_again_2, execute_1, execute_2, execute_jump, catch_fire);
 signal cstate, nstate : cycles := fetch;
 
 type operations is (readfromA, writetoA, moveBtoA, moveAtoB, addABtoA, subBfromAtoA, andABtoA, orABtoA, xorABtoA, notAtoA, nandABtoA, jumpifZ, jumpifN, halt, jump, incA, incB, decA, decB);
@@ -78,11 +78,13 @@ ALU : entity work.ALU(Behavioral)
 
 execucao : process (clk, reset, cstate)
 begin
-if reset /= '0' then
+
+if reset = '0' then
 
 if rising_edge(clk) then
 	read_enabled <= '0';
 	write_enabled <= '0';
+	steps <= 0;
 	case cstate is
 		when idle =>
 			nstate <= fetch_1;
@@ -161,39 +163,212 @@ if rising_edge(clk) then
 				when readfromA =>
 					case steps is
 						when 0 =>
-							
+							address <= REGINS;
+							toramdata <= REGA;
+						when 1 =>
+							write_enabled <= '1';
+							address <= REGINS;
+							toramdata <= REGA;
 						when others =>
+							nstate <= execute_2;
 					end case;
 				when writetoA =>
+					case steps is
+						when 0 =>
+							read_enabled <= '1';
+							address <= REGINS;
+						when 1 =>
+							read_enabled <= '1';
+							address <= REGINS;
+							REGA <= fromramdata;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when moveBtoA =>
+					case steps is
+						when 0 => 
+							REGA <= REGB;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when moveAtoB =>
+					case steps is
+						when 0 => 
+							REGB <= REGA;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when addABtoA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "001";
+							opA <= REGA;
+							opB <= REGB;
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when subBfromAtoA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "010";
+							opA <= REGA;
+							opB <= REGB;
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when andABtoA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "011";
+							opA <= REGA;
+							opB <= REGB;
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when orABtoA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "100";
+							opA <= REGA;
+							opB <= REGB;
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when xorABtoA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "101";
+							opA <= REGA;
+							opB <= REGB;
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when notAtoA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "110";
+							opA <= REGA;
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when nandABtoA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "111";
+							opA <= REGA;
+							opB <= REGB;
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when jumpifZ =>
+					case steps is
+						when 0 => 
+							if flags(1) = '1' then
+								REGADD <= REGINS;
+							end if;
+						when others =>
+							nstate <= execute_jump;
+					end case;
 				when jumpifN =>
+					case steps is
+						when 0 => 
+							if flags(0) = '1' then
+								REGADD <= REGINS;
+							end if;
+						when others =>
+							nstate <= execute_jump;
+					end case;
 				when halt =>
-				when jump =>				
+					case steps is
+						when others =>
+							nstate <= catch_fire;
+					end case;
+				when jump =>
+					case steps is
+						when 0 => 
+							REGADD <= REGINS;
+						when others =>
+							nstate <= execute_jump;
+					end case;				
 				when incA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "001";
+							opA <= REGA;
+							opB <= "00001";
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when incB =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "001";
+							opA <= REGB;
+							opB <= "00001";
+						when 1 =>
+							REGB <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when decA =>
+					case steps is
+						when 0 => 
+							AluOpCode <= "010";
+							opA <= REGA;
+							opB <= "00001";
+						when 1 =>
+							REGA <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when decB =>
-	
-				
+					case steps is
+						when 0 => 
+							AluOpCode <= "010";
+							opA <= REGB;
+							opB <= "00001";
+						when 1 =>
+							REGB <= res;
+						when others =>
+							nstate <= execute_2;
+					end case;
 				when others =>
+					nstate <= execute_2;
 			end case;			
 ------------------------------------------------------
+		when execute_2 =>
+			REGADD <= REGADD + 1;
+			nstate <= fetch_1;
+		when execute_jump =>
+			nstate <= fetch_1;
+		when catch_fire => 
+			REGINS <= not REGINS;
+			nstate <= catch_fire;
 		when others =>
+			read_enabled <= '0';
+			write_enabled <= '0';
+			steps <= 0;
 	end case;
 	
+end if; -- Fim de rising_edge(clk)
 
-end if;
-
-else
+else -- Caso reset esteja ligado
 	REGADD <= (others => '0');
 	steps <= 0;
 	read_enabled <= '0';
