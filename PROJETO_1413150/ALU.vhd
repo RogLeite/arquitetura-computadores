@@ -51,45 +51,37 @@ signal result_r : STD_LOGIC_VECTOR (4 downto 0) := (others =>'0');
 -- 0101 : A xou B
 -- 0110 : A ne B
 -- 0111 : not A
--- 1000 : A+1
--- 1001 : A-1
 
 begin
 
 	Status <= "010" when result_r= "00000" else "000";
 	Status <= "001" when result_r(result_r'high) = '1' else "000";
-	Result <= op;
+	Result <= result_r;
 	process (clock)
 	begin
 		if (clock = '1' and clock'event) then
 			case OpCode is
-				when "0001" =>
+				when "001" =>
 					op <= soma;
 					result_r <= A + B;
-				when "0010" =>
+				when "010" =>
 					op <= sub;
 					result_r <= A - B;
-				when "0011" =>
+				when "011" =>
 					op <= e;
 					result_r <= A and B;
-				when "0100" =>
+				when "100" =>
 					op <= ou;
 					result_r <= A or B;
-				when "0101" =>
+				when "101" =>
 					op <= xou;
 					result_r <= A xor B;
-				when "0110" =>
+				when "110" =>
 					op <= na;
 					result_r <= A nand B;
-				when "0111" =>
+				when "111" =>
 					op <= ne;
 					result_r <= not A;
-				when "1000" =>
-					op <= inc;
-					result_r <= A+1;
-				when "1001" =>
-					op <= dec;
-					result_r <= A-1;
 				when others =>
 					op <= nada;
 			end case;
