@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -30,38 +30,65 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity ALU is
-    Port ( reset : in  STD_LOGIC;
+    Port ( reset : in STD_LOGIC;
+	    clock : in  STD_LOGIC;
 			  A : in  STD_LOGIC_VECTOR(4 downto 0);
            B : in  STD_LOGIC_VECTOR(4 downto 0);
            OpCode : in  STD_LOGIC_VECTOR(2 downto 0);
-           Status : out STD_LOGIC_VECTOR(2 downto 0); -- (Overflow++Zero++Negativo)
+			  Status : out STD_LOGIC_VECTOR (2 downto 0);  
            Result : out  STD_LOGIC_VECTOR(4 downto 0));
 end ALU;
 
 architecture Behavioral of ALU is
-type operations is (nada, soma, sub, e, ou, xou, nao, ne);
+type operations is (nada, soma, sub, e, ou, xou, na, ne);
 signal op : operations := nada;
+signal result_r : STD_LOGIC_VECTOR (4 downto 0) := (others =>'0');
+
+-- OpCode:
+-- 001 : A+B
+-- 010 : A-B
+-- 011 : A e B
+-- 100 : A ou B
+-- 101 : A xou B
+-- 110 : A ne B
+-- 111 : not A
+
 begin
 
---
---case OpCode is
---	when "001" =>
---		op <= soma;
---	when "010" =>
---		op <= sub;
---	when "011" =>
---		op <= e;
---	when "100" =>
---		op <= ou;
---	when "101" =>
---		op <= xou;
---	when "110" =>
---		op <= nao;
---	when "111" =>
---		op <= ne;
---	when others =>
---		op <= nada;
---end case;
+	Status <= "010" when result_r= "00000" else "000";
+	Status <= "001" when result_r(result_r'high) = '1' else "000";
+	Result <= result_r;
+	process (reset)
+	begin
+		if (reset = '0') then
+			case OpCode is
+				when "001" =>
+					op <= soma;
+					result_r <= Std_logic_vector(To_signed(To_integer(Signed(A)) + To_integer(Signed(B)), 5));
+				when "010" =>
+					op <= sub;
+					result_r <= Std_logic_vector(To_signed(To_integer(Signed(A)) - To_integer(Signed(B)), 5));
+				when "011" =>
+					op <= e;
+					result_r <= A and B;
+				when "100" =>
+					op <= ou;
+					result_r <= A or B;
+				when "101" =>
+					op <= xou;
+					result_r <= A xor B;
+				when "110" =>
+					op <= na;
+					result_r <= A nand B;
+				when "111" =>
+					op <= ne;
+					result_r <= not A;
+				when others =>
+					op <= nada;
+			end case;
+		else
+            op <= nada;
+		end if;
+	end process;
 
 end Behavioral;
-
