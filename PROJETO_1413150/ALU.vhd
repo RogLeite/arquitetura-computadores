@@ -30,7 +30,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity ALU is
-    Port ( clock : in  STD_LOGIC;
+    Port ( reset : in STD_LOGIC;
+	    clock : in  STD_LOGIC;
 			  A : in  STD_LOGIC_VECTOR(4 downto 0);
            B : in  STD_LOGIC_VECTOR(4 downto 0);
            OpCode : in  STD_LOGIC_VECTOR(2 downto 0);
@@ -57,9 +58,9 @@ begin
 	Status <= "010" when result_r= "00000" else "000";
 	Status <= "001" when result_r(result_r'high) = '1' else "000";
 	Result <= result_r;
-	process (clock)
+	process (reset)
 	begin
-		if (clock = '1' and clock'event) then
+		if (reset = '0') then
 			case OpCode is
 				when "001" =>
 					op <= soma;
@@ -85,6 +86,8 @@ begin
 				when others =>
 					op <= nada;
 			end case;
+		else
+            op <= nada;
 		end if;
 	end process;
 
