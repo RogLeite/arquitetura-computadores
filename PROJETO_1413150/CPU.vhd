@@ -56,7 +56,7 @@ signal OpCode : std_logic_vector(4 downto 0) := (others => '0');
 
 
 --REGISTRADORES
-	--REGADD é o registrador de endereços e REGINS é o registrador de instruções 
+	--REGADD Ã© o registrador de endereÃ§os e REGINS Ã© o registrador de instruÃ§Ãµes 
 signal REGA, REGB, REGADD, REGINS : STD_LOGIC_VECTOR (4 downto 0) := (others => '0'); 
 
 
@@ -145,7 +145,8 @@ if rising_edge(clk) then
 		when decode_2 =>
 			--checar se precisa fazer outro fetch
 			if coperate = readfromA or coperate = writetoA or coperate = jumpifZ or coperate = jumpifN or coperate = jump then
-				nstate <= fetch_again_1;
+			    REGADD <= Std_logic_vector(To_unsigned(To_integer(Unsigned(REGADD)) + 1, 5));
+                nstate <= fetch_again_1;
 			else
 				steps <= 0;
 				nstate <= execute_1;
@@ -161,7 +162,7 @@ if rising_edge(clk) then
 			nstate <= execute_1;
 		when execute_1 => 
 			steps <= steps + 1;
---CASOS DE EXECUÇÃO----------------------------------
+--CASOS DE EXECUÃ‡ÃƒO----------------------------------
 			case coperate is
 				when readfromA =>
 					case steps is
@@ -382,11 +383,11 @@ end process execucao;
 
 
 
---Define próximo estado assíncronamente
+--Define prÃ³ximo estado assÃ­ncronamente
 cstate <= nstate;
 coperate <= noperate;
 
---Define a saída assíncronamente
+--Define a saÃ­da assÃ­ncronamente
 negative <= flags(0);
 zero <= flags(1);
 
