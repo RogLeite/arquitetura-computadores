@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -64,10 +64,10 @@ begin
 			case OpCode is
 				when "001" =>
 					op <= soma;
-					result_r <= A + B;
+					result_r <= Std_logic_vector(To_signed(To_integer(Signed(A)) + To_integer(Signed(B)), 5));
 				when "010" =>
 					op <= sub;
-					result_r <= A - B;
+					result_r <= Std_logic_vector(To_signed(To_integer(Signed(A)) - To_integer(Signed(B)), 5));
 				when "011" =>
 					op <= e;
 					result_r <= A and B;
@@ -92,4 +92,3 @@ begin
 	end process;
 
 end Behavioral;
-
