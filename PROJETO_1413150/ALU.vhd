@@ -31,7 +31,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity ALU is
     Port ( reset : in STD_LOGIC;
-	    clock : in  STD_LOGIC;
+			clock : in  STD_LOGIC;
 			  A : in  STD_LOGIC_VECTOR(4 downto 0);
            B : in  STD_LOGIC_VECTOR(4 downto 0);
            OpCode : in  STD_LOGIC_VECTOR(2 downto 0);
@@ -41,7 +41,7 @@ end ALU;
 
 architecture Behavioral of ALU is
 type operations is (nada, soma, sub, e, ou, xou, na, ne);
-signal op : operations := nada;
+--signal op : operations := nada;
 signal result_r : STD_LOGIC_VECTOR (4 downto 0) := (others =>'0');
 
 -- OpCode:
@@ -55,39 +55,55 @@ signal result_r : STD_LOGIC_VECTOR (4 downto 0) := (others =>'0');
 
 begin
 
-	Status <= "010" when result_r= "00000" else "000";
-	Status <= "001" when result_r(result_r'high) = '1' else "000";
 	Result <= result_r;
-	process (reset)
+	
+	define_status : process(reset ,result_r)
+	begin
+		if reset = '0' then
+			if result_r = "00000" then
+				Status <= "010";
+			elsif result_r(result_r'high) = '1' then
+				Status <= "001";
+			else
+				Status <= "000";
+			end if;
+		else
+			Status <= "000";
+		end if;
+	end process define_status;
+
+	process (reset, OpCode, A, B)
 	begin
 		if (reset = '0') then
 			case OpCode is
 				when "001" =>
-					op <= soma;
+					--op <= soma;
 					result_r <= Std_logic_vector(To_signed(To_integer(Signed(A)) + To_integer(Signed(B)), 5));
 				when "010" =>
-					op <= sub;
+					--op <= sub;
 					result_r <= Std_logic_vector(To_signed(To_integer(Signed(A)) - To_integer(Signed(B)), 5));
 				when "011" =>
-					op <= e;
+					--op <= e;
 					result_r <= A and B;
 				when "100" =>
-					op <= ou;
+					--op <= ou;
 					result_r <= A or B;
 				when "101" =>
-					op <= xou;
+					--op <= xou;
 					result_r <= A xor B;
 				when "110" =>
-					op <= na;
+					--op <= na;
 					result_r <= A nand B;
 				when "111" =>
-					op <= ne;
+					--op <= ne;
 					result_r <= not A;
 				when others =>
-					op <= nada;
+					result_r <= (others => '0');
+					--op <= nada;
 			end case;
 		else
-            op <= nada;
+			result_r <= (others => '0');
+            --op <= nada;
 		end if;
 	end process;
 
