@@ -53,6 +53,8 @@ signal toramdata : STD_LOGIC_VECTOR (4 downto 0);
 signal fromramdata : STD_LOGIC_VECTOR (4 downto 0);
 signal address : std_logic_vector(4 downto 0);
 --
+constant N : integer := 27;
+signal aux : std_logic_vector(N-1 downto 0) := (others => '0');
 
 begin
 	CPU : entity work.CPU(behavioral)
@@ -87,11 +89,16 @@ begin
 		data => instruction_register
 	);
 
-novoclock: process(clk) is
+novoclock: process(clk, reset) is
 begin
 	if reset='0' then
 		if rising_edge(clk) then
-		--gera clk2s: um clock de 2segundos
+		aux <= Std_logic_vector( to_unsigned( to_integer( unsigned( aux ) ) + 1, N ) );
+			--gera clk2s: um clock de 0.3 Hz
+			if aux(aux'high) = '1' then --aux = "010000000000000000000000000" then
+				clk2s <= not clk2s;
+				aux <= (others => '0' );
+			end if;
 		end if;
 	end if;
 end process novoclock;
