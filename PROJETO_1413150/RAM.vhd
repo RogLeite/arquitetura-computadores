@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -33,23 +33,21 @@ entity RAM is
     Port ( reset : in  STD_LOGIC;
 			  read_enabled : in  STD_LOGIC;
            write_enabled : in  STD_LOGIC;
-           toramdata : in STD_LOGIC_VECTOR (9 downto 0);
-           fromramdata : out STD_LOGIC_VECTOR (9 downto 0);
+           toramdata : in STD_LOGIC_VECTOR (4 downto 0);
+           fromramdata : out STD_LOGIC_VECTOR (4 downto 0);
 			  pos30: out STD_LOGIC_VECTOR(4 downto 0);
            address : in  STD_LOGIC_VECTOR (4 downto 0));
 end RAM;
 
-architecture BehavioralRAM of RAM is
+architecture Behavioral of RAM is
 
 type ram_type is array (0 to (2**5-1)) of std_logic_vector(4 downto 0);
 signal ram: ram_type := (others=>(others=>'0'));
---signal currentAddress: std_logic_vector(4 downto 0):= "00000";
-signal x: std_logic_vector(4 downto 0):= "11111";
 begin
 
-process(RESET)
+process(RESET, write_enabled, toramdata)
 begin
-	if reset = '0' then				-- Os endereços no comentário estão indexados em 0
+	if reset = '1' then				-- Os endereços no comentário estão indexados em 0
 		ram(0)  <= "00001";			--Mov A,[add]
 		ram(1)  <= "10000";			--(16)
 		ram(2)  <= "00100";			--Mov B, A
@@ -80,12 +78,5 @@ end process;
 
 fromramdata <= ram(to_integer(unsigned(address)));
 pos30 <= ram(30)(4 downto 0);
-
-end BehavioralRAM;
-
-architecture Behavioral of RAM is
-
-begin
-
 
 end Behavioral;

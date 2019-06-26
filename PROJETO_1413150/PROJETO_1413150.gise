@@ -15,7 +15,7 @@
 
   <!--                                                          -->
 
-  <!-- Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved. -->
+  <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved. -->
 
   <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
 
@@ -23,12 +23,83 @@
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
     <file xil_pn:fileType="FILE_LSO" xil_pn:name=".lso"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Projeto.prj"/>
-    <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="Projeto.stx"/>
-    <file xil_pn:fileType="FILE_XST" xil_pn:name="Projeto.xst"/>
+    <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="Projeto.cmd_log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="Projeto.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="Projeto.ngc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="Projeto.ngr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Projeto.prj"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="Projeto.stx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="Projeto.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="Projeto.xst"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="Projeto_envsettings.html"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="Projeto_summary.html"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Projeto_vhdl.prj"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="Projeto_xst.xrpt"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="netgen"/>
+    <file xil_pn:branch="PostSynthSim" xil_pn:fileType="FILE_NETGEN_REPORT" xil_pn:name="netgen/synthesis/Projeto_synthesis.nlf"/>
+    <file xil_pn:branch="PostSynthSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="netgen/synthesis/Projeto_synthesis.vhd"/>
+    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
 
-  <transforms xmlns="http://www.xilinx.com/XMLSchema"/>
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1561549895" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1561549895">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549895" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="2874852769551011464" xil_pn:start_ts="1561549895">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549895" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="1757994299598625390" xil_pn:start_ts="1561549895">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549895" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1561549895">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549895" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-8520216560204923898" xil_pn:start_ts="1561549895">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549895" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="-3893270297158069842" xil_pn:start_ts="1561549895">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549895" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-2456469921739548744" xil_pn:start_ts="1561549895">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549908" xil_pn:in_ck="-1091972154450446992" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="-3327800271463742005" xil_pn:start_ts="1561549895">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="Projeto.lso"/>
+      <outfile xil_pn:name="Projeto.ngc"/>
+      <outfile xil_pn:name="Projeto.ngr"/>
+      <outfile xil_pn:name="Projeto.prj"/>
+      <outfile xil_pn:name="Projeto.stx"/>
+      <outfile xil_pn:name="Projeto.syr"/>
+      <outfile xil_pn:name="Projeto.xst"/>
+      <outfile xil_pn:name="Projeto_vhdl.prj"/>
+      <outfile xil_pn:name="Projeto_xst.xrpt"/>
+      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+      <outfile xil_pn:name="xst"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549908" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="5354456464527643003" xil_pn:start_ts="1561549908">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1561549911" xil_pn:in_ck="127977992065942953" xil_pn:name="TRAN_postSynthesisSimModel" xil_pn:prop_ck="8026286025244278050" xil_pn:start_ts="1561549908">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="netgen"/>
+      <outfile xil_pn:name="netgen/synthesis/Projeto_synthesis.nlf"/>
+      <outfile xil_pn:name="netgen/synthesis/Projeto_synthesis.vhd"/>
+    </transform>
+  </transforms>
 
 </generated_project>

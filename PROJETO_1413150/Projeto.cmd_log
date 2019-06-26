@@ -1,0 +1,30 @@
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+netgen -intstyle ise -ar Structure -tm Projeto -w -dir netgen/synthesis -ofmt vhdl -sim Projeto.ngc Projeto_synthesis.vhd 

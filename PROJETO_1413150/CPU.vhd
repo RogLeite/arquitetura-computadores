@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -46,17 +46,14 @@ architecture Behavioral of CPU is
 
 --estados da CPU
 type cycles is (idle, fetch_1, fetch_2, decode_1, decode_2, fetch_again_1, fetch_again_2, execute_1, execute_2, execute_jump, catch_fire);
-signal cstate, nstate : cycles := fetch;
+signal cstate, nstate : cycles := idle;
 
-type operations is (readfromA, writetoA, moveBtoA, moveAtoB, addABtoA, subBfromAtoA, andABtoA, orABtoA, xorABtoA, notAtoA, nandABtoA, jumpifZ, jumpifN, halt, jump, incA, incB, decA, decB);
+type operations is (nothing, readfromA, writetoA, moveBtoA, moveAtoB, addABtoA, subBfromAtoA, andABtoA, orABtoA, xorABtoA, notAtoA, nandABtoA, jumpifZ, jumpifN, halt, jump, incA, incB, decA, decB);
 signal coperate, noperate: operations;
 signal steps: integer := 0;
---Sinais internos da CPU
-signal OpCode : std_logic_vector(4 downto 0) := (others => '0');
-
 
 --REGISTRADORES
-	--REGADD é o registrador de endereços e REGINS é o registrador de instruções 
+	--REGADD Ã© o registrador de endereÃ§os e REGINS Ã© o registrador de instruÃ§Ãµes 
 signal REGA, REGB, REGADD, REGINS : STD_LOGIC_VECTOR (4 downto 0) := (others => '0'); 
 
 
@@ -69,6 +66,7 @@ begin
 ALU : entity work.ALU(Behavioral)
 	Port Map (
 		reset => reset,
+		clock => clk,
 		A => opA,
 		B => opB,
 		OpCode => AluOpCode,
@@ -137,12 +135,15 @@ if rising_edge(clk) then
 					noperate <= decA;
 				when "10011" =>
 					noperate <= decB;
+				when others => 
+					noperate <= nothing;
 			end case;
 			nstate <= decode_2;
 		when decode_2 =>
 			--checar se precisa fazer outro fetch
-			if coperate = readtoA or coperate = writefromA or coperate = jumpifZ or coperate = jumpifN or coperate = jump then
-				nstate <= fetch_again_1;
+			if coperate = readfromA or coperate = writetoA or coperate = jumpifZ or coperate = jumpifN or coperate = jump then
+			    REGADD <= Std_logic_vector(To_unsigned(To_integer(Unsigned(REGADD)) + 1, 5));
+                nstate <= fetch_again_1;
 			else
 				steps <= 0;
 				nstate <= execute_1;
@@ -158,7 +159,7 @@ if rising_edge(clk) then
 			nstate <= execute_1;
 		when execute_1 => 
 			steps <= steps + 1;
---CASOS DE EXECUÇÃO----------------------------------
+--CASOS DE EXECUÃ‡ÃƒO----------------------------------
 			case coperate is
 				when readfromA =>
 					case steps is
@@ -353,7 +354,7 @@ if rising_edge(clk) then
 			end case;			
 ------------------------------------------------------
 		when execute_2 =>
-			REGADD <= REGADD + 1;
+			REGADD <= Std_logic_vector(To_unsigned(To_integer(Unsigned(REGADD)) + 1, 5));
 			nstate <= fetch_1;
 		when execute_jump =>
 			nstate <= fetch_1;
@@ -379,13 +380,14 @@ end process execucao;
 
 
 
---Define próximo estado assíncronamente
+--Define prÃ³ximo estado assÃ­ncronamente
 cstate <= nstate;
 coperate <= noperate;
 
---Define a saída assíncronamente
+--Define a saÃ­da assÃ­ncronamente
 negative <= flags(0);
 zero <= flags(1);
+instruction_register <= REGADD;
 
 end Behavioral;
 
