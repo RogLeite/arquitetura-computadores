@@ -42,7 +42,7 @@ end ALU;
 architecture Behavioral of ALU is
 type operations is (nada, soma, sub, e, ou, xou, na, ne);
 --signal op : operations := nada;
-signal result_r : STD_LOGIC_VECTOR (4 downto 0) := (others =>'0');
+signal result_r : STD_LOGIC_VECTOR (4 downto 0) := "00001";
 
 -- OpCode:
 -- 001 : A+B
@@ -98,12 +98,11 @@ begin
 					--op <= ne;
 					result_r <= not A;
 				when others =>
-					result_r <= (others => '0');
+					result_r <= "00001";
 					--op <= nada;
 			end case;
 		else
-			result_r <= (others => '0');
-            --op <= nada;
+			result_r <= "00001";
 		end if;
 	end process;
 
