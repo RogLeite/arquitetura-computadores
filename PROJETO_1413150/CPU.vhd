@@ -77,9 +77,13 @@ ALU : entity work.ALU(Behavioral)
 execucao : process (clk, reset, cstate)
 begin
 
-if reset = '0' then
-
-if rising_edge(clk) then
+if reset = '1' then
+	REGADD <= (others => '0');
+	steps <= 0;
+	read_enabled <= '0';
+	write_enabled <= '0';
+	nstate <= idle;
+elsif rising_edge(clk) then
 	read_enabled <= '0';
 	write_enabled <= '0';
 	steps <= 0;
@@ -98,9 +102,9 @@ if rising_edge(clk) then
 		
 			case REGINS is
 				when "00001" =>
-					noperate <= readfromA;
-				when "00010" =>
 					noperate <= writetoA;
+				when "00010" =>
+					noperate <= readfromA;
 				when "00011" =>
 					noperate <= moveBtoA;
 				when "00100" =>
@@ -312,6 +316,9 @@ if rising_edge(clk) then
 							opA <= REGA;
 							opB <= "00001";
 						when 1 =>
+							AluOpCode <= "001";
+							opA <= REGA;
+							opB <= "00001";
 							REGA <= res;
 						when others =>
 							nstate <= execute_2;
@@ -323,6 +330,9 @@ if rising_edge(clk) then
 							opA <= REGB;
 							opB <= "00001";
 						when 1 =>
+							AluOpCode <= "001";
+							opA <= REGB;
+							opB <= "00001";
 							REGB <= res;
 						when others =>
 							nstate <= execute_2;
@@ -334,6 +344,9 @@ if rising_edge(clk) then
 							opA <= REGA;
 							opB <= "00001";
 						when 1 =>
+							AluOpCode <= "010";
+							opA <= REGA;
+							opB <= "00001";
 							REGA <= res;
 						when others =>
 							nstate <= execute_2;
@@ -345,6 +358,9 @@ if rising_edge(clk) then
 							opA <= REGB;
 							opB <= "00001";
 						when 1 =>
+							AluOpCode <= "010";
+							opA <= REGB;
+							opB <= "00001";
 							REGB <= res;
 						when others =>
 							nstate <= execute_2;
@@ -369,13 +385,13 @@ if rising_edge(clk) then
 	
 end if; -- Fim de rising_edge(clk)
 
-else -- Caso reset esteja ligado
-	REGADD <= (others => '0');
-	steps <= 0;
-	read_enabled <= '0';
-	write_enabled <= '0';
-	nstate <= idle;
-end if;
+--else -- Caso reset esteja ligado
+--	REGADD <= (others => '0');
+--	steps <= 0;
+--	read_enabled <= '0';
+--	write_enabled <= '0';
+--	nstate <= idle;
+--end if;
 end process execucao;
 
 
@@ -387,7 +403,7 @@ coperate <= noperate;
 --Define a saída assíncronamente
 negative <= flags(0);
 zero <= flags(1);
-instruction_register <= REGADD;
+instruction_register <= REGINS;
 
 end Behavioral;
 

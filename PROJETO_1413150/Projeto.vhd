@@ -40,7 +40,7 @@ architecture Behavioral of Projeto is
 --sinais para o projeto exibir nos leds
 signal isnegative : std_logic;
 signal iszero : std_logic;
-signal clk2s: std_logic;
+signal clk2s: std_logic := '0';
 signal pos30: std_logic_vector(4 downto 0);
 
 -- sinal para o projeto exibir no LCD
@@ -53,7 +53,7 @@ signal toramdata : STD_LOGIC_VECTOR (4 downto 0);
 signal fromramdata : STD_LOGIC_VECTOR (4 downto 0);
 signal address : std_logic_vector(4 downto 0);
 --
-constant N : integer := 27;
+constant N : integer := 24;
 signal aux : std_logic_vector(N-1 downto 0) := (others => '0');
 
 begin
@@ -82,12 +82,12 @@ begin
 		address => address
 	);
 
-	LCD : entity work.LCD(behavioral)
-	Port Map (
-		clk => clk,
-		reset => reset,
-		data => instruction_register
-	);
+--	LCD : entity work.LCD(behavioral)
+--	Port Map (
+--		clk => clk,
+--		reset => reset,
+--		data => instruction_register
+--	);
 
 novoclock: process(clk, reset) is
 begin
