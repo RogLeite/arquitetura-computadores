@@ -222,3 +222,21 @@ map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o Projeto
 par -w -intstyle ise -ol high -t 1 Projeto_map.ncd Projeto.ncd Projeto.pcf 
 trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml Projeto.twx Projeto.ncd -o Projeto.twr Projeto.pcf -ucf Projeto_Constraints.ucf 
 bitgen -intstyle ise -f Projeto.ut Projeto.ncd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Projeto_Constraints.ucf -p xc3s500e-fg320-4 Projeto.ngc Projeto.ngd  
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o Projeto_map.ncd Projeto.ngd Projeto.pcf 
+par -w -intstyle ise -ol high -t 1 Projeto_map.ncd Projeto.ncd Projeto.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml Projeto.twx Projeto.ncd -o Projeto.twr Projeto.pcf -ucf Projeto_Constraints.ucf 
+bitgen -intstyle ise -f Projeto.ut Projeto.ncd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Projeto_Constraints.ucf -p xc3s500e-fg320-4 Projeto.ngc Projeto.ngd  
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o Projeto_map.ncd Projeto.ngd Projeto.pcf 
+par -w -intstyle ise -ol high -t 1 Projeto_map.ncd Projeto.ncd Projeto.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml Projeto.twx Projeto.ncd -o Projeto.twr Projeto.pcf -ucf Projeto_Constraints.ucf 
+bitgen -intstyle ise -f Projeto.ut Projeto.ncd 
+xst -intstyle ise -ifn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.xst" -ofn "C:/TEMP/comp-dig-master/PROJETO_1413150/Projeto.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Projeto_Constraints.ucf -p xc3s500e-fg320-4 Projeto.ngc Projeto.ngd  
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o Projeto_map.ncd Projeto.ngd Projeto.pcf 
+par -w -intstyle ise -ol high -t 1 Projeto_map.ncd Projeto.ncd Projeto.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml Projeto.twx Projeto.ncd -o Projeto.twr Projeto.pcf -ucf Projeto_Constraints.ucf 
+bitgen -intstyle ise -f Projeto.ut Projeto.ncd 

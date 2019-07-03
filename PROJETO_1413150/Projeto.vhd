@@ -53,7 +53,7 @@ signal toramdata : STD_LOGIC_VECTOR (4 downto 0);
 signal fromramdata : STD_LOGIC_VECTOR (4 downto 0);
 signal address : std_logic_vector(4 downto 0);
 --
-constant N : integer := 24;
+constant N : integer := 23;
 signal aux : std_logic_vector(N-1 downto 0) := (others => '0');
 
 begin

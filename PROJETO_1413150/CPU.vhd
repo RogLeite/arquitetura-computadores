@@ -284,18 +284,20 @@ elsif rising_edge(clk) then
 						when 0 => 
 							if flags(1) = '1' then
 								REGADD <= REGINS;
+								nstate <= execute_jump;
 							end if;
 						when others =>
-							nstate <= execute_jump;
+							nstate <= execute_2;
 					end case;
 				when jumpifN =>
 					case steps is
 						when 0 => 
 							if flags(0) = '1' then
 								REGADD <= REGINS;
+								nstate <= execute_jump;
 							end if;
 						when others =>
-							nstate <= execute_jump;
+							nstate <= execute_2;
 					end case;
 				when halt =>
 					case steps is

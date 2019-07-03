@@ -1,14 +1,14 @@
 --------------------------------------------------------------------------------
-Release 14.7 Trace  (nt64)
-Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Release 14.5 Trace  (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
+C:\Xilinx\14.5\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
 -n 3 -fastpaths -xml Projeto.twx Projeto.ncd -o Projeto.twr Projeto.pcf -ucf
 Projeto_Constraints.ucf
 
 Design file:              Projeto.ncd
 Physical constraint file: Projeto.pcf
-Device,package,speed:     xc3s500e,fg320,-4 (PRODUCTION 1.27 2013-10-13)
+Device,package,speed:     xc3s500e,fg320,-4 (PRODUCTION 1.27 2013-03-26)
 Report level:             verbose report
 
 Environment Variable      Effect 
@@ -45,7 +45,7 @@ Clock clk to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-leds<7>     |    7.727(R)|clk_BUFGP         |   0.000|
+leds<7>     |    7.709(R)|clk_BUFGP         |   0.000|
 ------------+------------+------------------+--------+
 
 Clock reset to Pad
@@ -53,11 +53,11 @@ Clock reset to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-leds<2>     |   14.818(R)|reset_IBUF        |   0.000|
-leds<3>     |   14.798(R)|reset_IBUF        |   0.000|
-leds<4>     |   14.961(R)|reset_IBUF        |   0.000|
-leds<5>     |   14.995(R)|reset_IBUF        |   0.000|
-leds<6>     |   14.898(R)|reset_IBUF        |   0.000|
+leds<2>     |   15.193(R)|reset_IBUF        |   0.000|
+leds<3>     |   15.460(R)|reset_IBUF        |   0.000|
+leds<4>     |   14.562(R)|reset_IBUF        |   0.000|
+leds<5>     |   15.422(R)|reset_IBUF        |   0.000|
+leds<6>     |   15.183(R)|reset_IBUF        |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock clk
@@ -65,8 +65,8 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    5.027|         |         |         |
-reset          |    5.304|    5.304|         |         |
+clk            |    4.869|         |         |         |
+reset          |    5.729|    5.729|         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock reset
@@ -74,19 +74,19 @@ Clock to Setup on destination clock reset
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-reset          |    2.734|         |         |         |
+reset          |    2.182|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Pad to Pad
 ---------------+---------------+---------+
 Source Pad     |Destination Pad|  Delay  |
 ---------------+---------------+---------+
-reset          |leds<0>        |   10.484|
-reset          |leds<1>        |   14.701|
+reset          |leds<0>        |   10.439|
+reset          |leds<1>        |   15.972|
 ---------------+---------------+---------+
 
 
-Analysis completed Mon Jul 01 10:15:21 2019 
+Analysis completed Wed Jul 03 08:48:15 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:

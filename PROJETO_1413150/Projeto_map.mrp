@@ -1,4 +1,4 @@
-Release 14.7 Map P.20131013 (nt64)
+Release 14.5 Map P.58f (nt64)
 Xilinx Mapping Report File for Design 'Projeto'
 
 Design Information
@@ -9,7 +9,7 @@ Target Device  : xc3s500e
 Target Package : fg320
 Target Speed   : -4
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Mon Jul 01 10:14:53 2019
+Mapped Date    : Wed Jul 03 08:47:43 2019
 
 Design Summary
 --------------
@@ -19,20 +19,20 @@ Logic Utilization:
   Total Number Slice Registers:         273 out of   9,312    2%
     Number used as Flip Flops:          113
     Number used as Latches:             160
-  Number of 4 input LUTs:               514 out of   9,312    5%
+  Number of 4 input LUTs:               556 out of   9,312    5%
 Logic Distribution:
-  Number of occupied Slices:            330 out of   4,656    7%
-    Number of Slices containing only related logic:     330 out of     330 100%
-    Number of Slices containing unrelated logic:          0 out of     330   0%
+  Number of occupied Slices:            351 out of   4,656    7%
+    Number of Slices containing only related logic:     351 out of     351 100%
+    Number of Slices containing unrelated logic:          0 out of     351   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         514 out of   9,312    5%
+  Total Number of 4 input LUTs:         556 out of   9,312    5%
   Number of bonded IOBs:                 10 out of     232    4%
   Number of RAMB16s:                      1 out of      20    5%
   Number of BUFGMUXs:                     3 out of      24   12%
 
-Average Fanout of Non-Clock Nets:                3.46
+Average Fanout of Non-Clock Nets:                3.59
 
-Peak Memory Usage:  4477 MB
+Peak Memory Usage:  4409 MB
 Total REAL time to MAP completion:  2 secs 
 Total CPU time to MAP completion:   2 secs 
 
